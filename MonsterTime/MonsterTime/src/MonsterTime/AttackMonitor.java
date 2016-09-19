@@ -1,7 +1,7 @@
 package MonsterTime;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class AttackMonitor {
@@ -47,7 +47,7 @@ public class AttackMonitor {
 
 		String monsterNameIn = JOptionPane.showInputDialog("Please Enter the Monster Name: ");
 
-		String fullDateIn = JOptionPane.showInputDialog("Please Enter the Date the attack occured on (dd/mm/yyyy): ");
+		String fullDateIn = JOptionPane.showInputDialog("Please Enter the Date the attack occured on (MM/DD/YYYY): ");
 
 		int attackVictimsIn = Integer.parseInt(JOptionPane.showInputDialog("How many fatalities were there? "));
 
@@ -59,8 +59,12 @@ public class AttackMonitor {
 
 	private void showMonsterAttacks() {
 
+		String wholeList = "";
+
 		for (int i = 0; i < monsterAttacks.size(); i++)
-			JOptionPane.showMessageDialog(null, monsterAttacks.get(i));
+			wholeList += monsterAttacks.get(i);
+
+		JOptionPane.showMessageDialog(null, wholeList);
 
 	}
 
@@ -68,12 +72,13 @@ public class AttackMonitor {
 
 		showMonsterAttacks();
 
-		List<MonsterAttack> choice = new ArrayList<MonsterAttack>();
+		int choice = Integer.parseInt(
+				JOptionPane.showInputDialog("Enter the ID # of the Monster attack you would like to delete: "));
 
-		choice = JOptionPane.showInputDialog("Enter the ID # of the Monster attack you would like to delete: ");
-		for (int i = 0; i < monsterAttacks.size();) {
-			if (choice == monsterAttacks.get(i))
+		for (int i = 0; i < monsterAttacks.size(); i++) {
+			if (choice == monsterAttacks.get(i).getAttackId())
 				monsterAttacks.remove(i);
+
 		}
 	}
 }
