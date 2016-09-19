@@ -10,9 +10,9 @@ public class MonsterAttack {
 	private String attackLocation;
 	private String fullDate;
 
-	public MonsterAttack(String fullDateIn, int attackIdIn, int attackVictimsIn,
-			String monsterNameIn, String attackLocationIn) {
-		
+	public MonsterAttack(String fullDateIn, int attackIdIn, int attackVictimsIn, String monsterNameIn,
+			String attackLocationIn) {
+
 		attackId = attackIdIn;
 		attackVictims = attackVictimsIn;
 		monsterName = monsterNameIn;
@@ -20,14 +20,14 @@ public class MonsterAttack {
 		fullDate = fullDateIn;
 	}
 
-	public String getFullDate(){
+	public String getFullDate() {
 		return fullDate;
 	}
-	
-	public void setFullDate(String fullDate){
+
+	public void setFullDate(String fullDate) {
 		this.fullDate = fullDate;
 	}
-	
+
 	public int getAttackId() {
 		return attackId;
 	}
@@ -84,7 +84,7 @@ public class MonsterAttack {
 		this.attackLocation = attackLocation;
 	}
 
-	public void fullDateSplitter(String fullDate) {		
+	public void fullDateSplitter(String fullDate) {
 
 		String[] afterSplit = fullDate.split("/");
 
@@ -93,15 +93,14 @@ public class MonsterAttack {
 		attackYear = Integer.parseInt(afterSplit[2]);
 
 	}
+
 	public String toString() {
-		
+
 		fullDateSplitter(fullDate);
-		
+
 		return "Attack # " + attackId + " occured on " + attackDay + "/" + attackMonth + "/" + attackYear + ". "
 				+ monsterName + " attacked " + attackLocation + ", resulting in " + attackVictims
-				+ " tragic fatalities.";
+				+ " tragic fatalities." + "\n";
 
 	}
-
-	
 }
