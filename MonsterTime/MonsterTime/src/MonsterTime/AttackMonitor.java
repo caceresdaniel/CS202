@@ -3,6 +3,8 @@ package MonsterTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.io.*;
+import java.util.Scanner;
 
 public class AttackMonitor {
 
@@ -10,7 +12,8 @@ public class AttackMonitor {
 
 	public void monitor() {
 
-		String[] options = { "Quit", "Input a New Monster Attack", "Show List of Attacks", "Delete an Attack" };
+		String[] options = { "Quit", "Input a New Monster Attack", "Show List of Attacks", "Delete an Attack",
+				"Write to File", "Copy from File" };
 
 		int selection;
 
@@ -36,7 +39,26 @@ public class AttackMonitor {
 				else if (monsterAttacks.isEmpty())
 					JOptionPane.showMessageDialog(null, "There is nothing to delete.");
 				break;
-			}
+
+			case 4:
+				if (!(monsterAttacks.isEmpty()))
+					try {
+						fileWriter();
+					} catch (IOException e) {
+						System.err.println(e);
+						System.exit(1);
+					}
+				else if (monsterAttacks.isEmpty())
+					JOptionPane.showMessageDialog(null, "There is nothing to copy.");
+				break;
+			case 5:
+				try {
+					clearAllDataAndCopy();
+				} catch (IOException e) {
+					System.err.println(e);
+					System.exit(1);
+				}
+				break;
 
 		} while (selection != 0);
 	}
@@ -80,5 +102,40 @@ public class AttackMonitor {
 				monsterAttacks.remove(i);
 
 		}
+	}
+
+	private void fileWriter() throws IOException {
+
+		String fileLocation = JOptionPane.showInputDialog(null, "Enter a file path to copy to: ");
+
+		File outFile = new File(fileLocation);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(outFile));
+
+		for (int i = 0; i < monsterAttacks.size(); i++) {
+			writer.write(String.valueOf(monsterAttacks.get(i).getAttackId()));
+			writer.write(" , ");
+			writer.write(monsterAttacks.get(i).getMonsterName());
+			writer.write(" , ");
+			writer.write(monsterAttacks.get(i).getAttackLocation());
+			writer.write(" , ");
+			writer.write(monsterAttacks.get(i).getFullDate());
+			writer.write(" , ");
+			writer.write(String.valueOf(monsterAttacks.get(i).getAttackVictims()));
+			writer.newLine();
+		}
+		writer.close();
+	}
+
+	private void clearAllDataAndCopy() throws IOException {
+
+		if (!(monsterAttacks.isEmpty())) {
+			for (int i = 0; i < monsterAttacks.size(); i++)
+				monsterAttacks.remove(i);
+		}
+		String fileLocation = JOptionPane.showInputDialog(null, "Enter a file path to copy from: ");
+
+		File inFile = new File(fileLocation);
+		Scanner freader = new Scanner(inFile);
+
 	}
 }
