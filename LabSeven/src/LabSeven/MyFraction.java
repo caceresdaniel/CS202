@@ -165,6 +165,8 @@ public class MyFraction implements MyMath<MyFraction> {
 					plusOrMinus = "-";
 				numerator = numerator / i;
 				denominator = denominator / i;
+				setNumerator(numerator);
+				setDenominator(denominator);
 				return plusOrMinus + String.valueOf(numerator) + "/" + String.valueOf(denominator);
 			}
 		}

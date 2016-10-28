@@ -15,8 +15,8 @@ public class Driver {
 		final List<MySet> sets = new ArrayList<MySet>();
 		
 		
-		fracs.add(new MyFraction(1, 2, '+')); // 2/2
-		fracs.add(new MyFraction(1, 2, '+'));
+		fracs.add(new MyFraction(5, 7, '+')); // 2/2
+		fracs.add(new MyFraction(7, 7, '+'));
 		
 		int[] numsOne = { 9, 10, 11, 6, 0 };
 		int[] numsTwo = { 25, 9, 10, 8, 3, 2, 98 };
@@ -31,14 +31,17 @@ public class Driver {
 
 		//fracs.get(2).add(fracs.get(3));
 
-		fracs.get(0).subtract(fracs.get(1));
+		fracs.get(0).add(fracs.get(1));
 		
 		System.out.println(fracs.get(0));
 
 		//fracs.get(2).multiply(fracs.get(3));
 
-		//fracs.get(2).divide(fracs.get(3));
-
+		//fracs.get(2).divide(fracs.get(3));'
+		
+		
+		
+	
 	}
 
 }
