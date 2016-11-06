@@ -1,0 +1,48 @@
+.mainTitle{
+	-fx-font-size: 250.0%;
+	-fx-background-color: #D3D3D3;
+	-fx-text-fill: #000000; 
+	-fx-alignment: center;
+	-fx-max-width: 905;
+}
+.horizontal{
+	-fx-alignment: top-center; 
+	-fx-background-color: #D3D3D3;
+}
+
+.answerLabel{
+	-fx-font-size: 130.0%
+}
+.borders{
+	-fx-fill: #A9A9A9;
+	-fx-stroke: black;
+}
+.otherBoxes{
+	-fx-fill: #000000;
+	-fx-stroke: #A9A9A9;
+}
+.textStyleBorder{
+	-fx-text-fill: #000000;
+	-fx-font-size: 230%;
+	-fx-text-alignment: center;
+}
+.textStyleOther{
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 150%;
+	-fx-text-alignment: center;
+}
+.rectDimensions{
+	-fx-fit-to-height: 75;
+	-fx-fit-to-width: 75; 
+}
+.answerLightUp{
+	-fx-fill: #FFFFFF;
+	-fx-stroke: black;
+}
+.answerText{
+	-fx-text-fill: #000000;
+	-fx-font-size: 150%;
+}
+.inputBar{
+	-fx-fit-to-width: 200;
+}
