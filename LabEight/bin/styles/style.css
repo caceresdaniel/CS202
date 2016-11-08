@@ -9,39 +9,35 @@
 	-fx-alignment: top-center; 
 	-fx-background-color: #D3D3D3;
 }
-
-.answerLabel{
-	-fx-font-size: 130.0%
+.askAnswerLabel{
+	-fx-font-size: 120.0%
 }
-.borders{
-	-fx-fill: #A9A9A9;
-	-fx-stroke: black;
-}
-.otherBoxes{
-	-fx-fill: #000000;
-	-fx-stroke: #A9A9A9;
-}
-.textStyleBorder{
+.labelBorder{
 	-fx-text-fill: #000000;
-	-fx-font-size: 230%;
-	-fx-text-alignment: center;
+	-fx-font-size: 165%;
+	-fx-background-color: #A9A9A9;
+	-fx-alignment: center;
+	-fx-border-color: #000000;
+	-fx-pref-height: 60;
+	-fx-pref-width: 60; 
 }
-.textStyleOther{
+.labelOther{
 	-fx-text-fill: #FFFFFF;
-	-fx-font-size: 150%;
-	-fx-text-alignment: center;
+	-fx-background-color: #000000;
+	-fx-font-size: 120%;
+	-fx-alignment: center;
+	-fx-border-color: #FFFFFF;
+	-fx-pref-height: 60;
+	-fx-pref-width: 60; 
 }
-.rectDimensions{
-	-fx-fit-to-height: 75;
-	-fx-fit-to-width: 75; 
-}
-.answerLightUp{
-	-fx-fill: #FFFFFF;
-	-fx-stroke: black;
-}
-.answerText{
+.labelAnswer{
 	-fx-text-fill: #000000;
-	-fx-font-size: 150%;
+	-fx-background-color: #FFFFFF;
+	-fx-font-size: 120%;
+	-fx-alignment: center;
+	-fx-border-color: #000000;
+	-fx-pref-height: 60;
+	-fx-pref-width: 60; 
 }
 .inputBar{
 	-fx-fit-to-width: 200;
