@@ -1,0 +1,40 @@
+.startOrFinish{
+	-fx-background-color: #FF0000;
+	-fx-text-fill: #0000FF;
+	-fx-alignment: center;
+	-fx-pref-height: 40;
+	-fx-pref-width: 40; 
+	-fx-border-color: #000000;
+}
+.walls{
+	/*-fx-background-color: #ADD8E6;*/
+	-fx-pref-height: 40px;
+	-fx-pref-width: 40px; 
+	-fx-border-color: #ffffff;
+	-fx-background-image: url("Untitled.png"); 
+	}
+.path{
+	-fx-pref-height: 40;
+	-fx-pref-width: 40; 
+	-fx-background-color: #000000;
+}
+.title{
+	-fx-background-color: #ADD8E6;
+	-fx-alignment: center;
+	-fx-font-size: 250%;
+	-fx-max-width: 1000;
+}
+.button{
+	-fx-background-color: #ADD8E6;
+	-fx-border-color: #000000;
+}
+.vbox{
+	-fx-background-color: #ADD8E6;
+	-fx-alignment: center;
+}
+.player{
+	
+}
+.bulls{
+	
+}
