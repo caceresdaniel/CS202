@@ -4,8 +4,8 @@ public class StreetMap {
 	Coordinate[][] coords = new Coordinate[20][20];
 
 	public void setGrid() {
-		for (int row = 0; row < 20; row++)
-			for (int col = 0; col < 20; col++) {
+		for (int col = 0; col < 20; col++)
+			for (int row = 0; row < 20; row++) {
 				coords[row][col] = new Coordinate();
 				if (row == 0 && col == 1) {
 					coords[row][col] = new Coordinate(row, col, 'S');
@@ -25,6 +25,3 @@ public class StreetMap {
 			}
 	}
 }
-
-
-// keyevent.getcode() == KeyCode.DOWN
