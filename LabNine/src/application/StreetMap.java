@@ -4,8 +4,8 @@ public class StreetMap {
 	Coordinate[][] coords = new Coordinate[20][20];
 
 	public void setGrid() {
-		for (int col = 0; col < 20; col++)
-			for (int row = 0; row < 20; row++) {
+		for (int row = 0; row < 20; row++)
+			for (int col = 0; col < 20; col++) {
 				coords[row][col] = new Coordinate();
 				if (row == 0 && col == 1) {
 					coords[row][col] = new Coordinate(row, col, 'S');
@@ -15,10 +15,9 @@ public class StreetMap {
 					coords[row][col] = new Coordinate(row, col, 'W');
 				} else {
 					int randNum = (int) (Math.random() * 5);
-					if(randNum == 0){
-					coords[row][col] = new Coordinate(row, col, 'W');
-					}
-					else {
+					if (randNum == 0) {
+						coords[row][col] = new Coordinate(row, col, 'W');
+					} else {
 						coords[row][col] = new Coordinate(row, col, ' ');
 					}
 				}

@@ -1,29 +1,36 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MazeGUIPane extends Application {
-	Boolean gameOver = false;
-	GridPane gp = new GridPane();
-	StreetMap sm = new StreetMap();
+
+	SelectionScreen menu = new SelectionScreen();
+	List<Bull> bull = new ArrayList<Bull>();
+	Label winston = new Label("You Lose!");
+	Label mccree = new Label("You Win!");
 	Coordinate c = new Coordinate();
+	StreetMap sm = new StreetMap();
+	GridPane gp = new GridPane();
 	Label fool = new Label();
-	Bull bull = new Bull();
-	Fool fu = new Fool();
+	Boolean bullOut = false;
+	Fool foo = new Fool();
 	VBox vb = new VBox();
+	HBox hb = new HBox();
 	int turnCount = 0;
 	int row, col;
-	int foolRow = 1;
-	int foolCol = 1;
-
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -31,8 +38,11 @@ public class MazeGUIPane extends Application {
 
 			vb.getStyleClass().add("vbox");
 
-			Label title = new Label("Map of Pamplona");
+			Label title = new Label("Escape From The Winston's!");
 			title.getStyleClass().add("title");
+
+			mccree.getStyleClass().add("winLoseLabel");
+			winston.getStyleClass().add("winLoseLabel");
 
 			Scene sc = new Scene(vb);
 			sc.getStylesheets().add("styles/style.css");
@@ -40,15 +50,23 @@ public class MazeGUIPane extends Application {
 			Button butt = new Button("Start");
 			butt.getStyleClass().add("button");
 
-			startGame(butt, gp);
+			startButton(butt, gp);
 
 			sm.setGrid();
 			createGrid();
 
-			vb.getChildren().addAll(title, gp, butt);
+			hb.getChildren().addAll(butt);
+			hb.getStyleClass().add("hbox");
+
+			if (foo.getMcCreeGameOver() == true) {
+				hb.getChildren().addAll(mccree);
+			} else if (foo.getWinstonGameOver() == true) {
+				hb.getChildren().addAll(winston);
+			}
+
+			vb.getChildren().addAll(title, gp, hb);
 
 			System.out.println(sm.coords[2][3].getValue());
-			foolController();
 
 			primaryStage.setScene(sc);
 			primaryStage.show();
@@ -112,30 +130,33 @@ public class MazeGUIPane extends Application {
 		});
 	}
 
-	public void startGame(Button butt, GridPane gp) {
-		// When the start button is pressed the player is added to the grid
-		// and can be controlled by the method called later on
+	public void startButton(Button butt, GridPane gp) {
 		butt.setOnMouseClicked(e -> {
+
+			menu.selectionMenu();
+			
 			turnCount = 0;
-			System.out.println(fu.getTurns());
-			if (gameOver = true) {
+			if (foo.getMcCreeGameOver() == true || foo.getWinstonGameOver() == true) {
 				sm.setGrid();
 				createGrid();
-				gameOver = false;
+				foo.setMcCreeGameOver(false);
+				foo.setWinstonGameOver(false);
+				bull.clear();
+				hb.getChildren().remove(mccree);
+				hb.getChildren().remove(winston);
 			}
 
 			JOptionPane.showMessageDialog(null, "Game Start!");
-			fool.getStyleClass().add("player");
 
-			// added the fool to the coordinate class
-			sm.coords[foolRow][foolCol].setValue('P');
+			foolController();
 
-			// gp.add(fool, foolCol, foolRow);
+			sm.coords[1][1].setValue('P');
+			createGrid();
 		});
 	}
 
 	public void foolController() {
-		// this method moves the fool according to where the user designates
+
 		vb.setOnKeyPressed(e -> {
 			int currentRow = 0, currentCol = 0;
 			for (int i = 0; i < 20; i++)
@@ -150,20 +171,19 @@ public class MazeGUIPane extends Application {
 					sm.coords[currentRow][currentCol].setValue(' ');
 					sm.coords[currentRow + 1][currentCol].setValue('P');
 					turnCount++;
-					fu.setCol(currentCol);
-					fu.setRow(currentRow + 1);
-					System.out.println(sm.coords[2][3].getValue());
+					foo.setCol(currentRow + 1);
+					foo.setRow(currentCol);
 				} else if (sm.coords[currentRow + 1][currentCol].getValue() == 'E') {
 					JOptionPane.showMessageDialog(null, "You Win!!!!!");
-					gameOver = true;
+					foo.setMcCreeGameOver(true);
 				}
 			} else if (e.getCode() == KeyCode.LEFT) {
 				if (sm.coords[currentRow - 1][currentCol].getValue() == ' ') {
 					sm.coords[currentRow][currentCol].setValue(' ');
 					sm.coords[currentRow - 1][currentCol].setValue('P');
 					turnCount++;
-					fu.setCol(currentCol);
-					fu.setRow(currentRow - 1);
+					foo.setCol(currentRow - 1);
+					foo.setRow(currentCol);
 
 				}
 			} else if (e.getCode() == KeyCode.DOWN) {
@@ -171,32 +191,64 @@ public class MazeGUIPane extends Application {
 					sm.coords[currentRow][currentCol].setValue(' ');
 					sm.coords[currentRow][currentCol + 1].setValue('P');
 					turnCount++;
-					fu.setCol(currentCol + 1);
-					fu.setRow(currentRow);
+					foo.setCol(currentRow);
+					foo.setRow(currentCol + 1);
 				}
 			} else if (e.getCode() == KeyCode.UP) {
 				if (sm.coords[currentRow][currentCol - 1].getValue() == ' ') {
 					sm.coords[currentRow][currentCol].setValue(' ');
 					sm.coords[currentRow][currentCol - 1].setValue('P');
 					turnCount++;
-					fu.setCol(currentCol - 1);
-					fu.setRow(currentRow);
+					foo.setCol(currentRow);
+					foo.setRow(currentCol - 1);
 				}
 			}
-			// updates the grid to show where the fool actually is
-			fu.setTurns(turnCount);
-			addBull();
-			System.out.println(fu.getTurns());
-			if (fu.getTurns() == 3) {
-				bull.foolChase(sm);
+
+			foo.setTurns(turnCount);
+			createBull();
+
+			int count = 0;
+			if (foo.getTurns() % 1 == 0 && bullOut == true) {
+				do {
+					for (int i = 0; i < bull.size(); i++) {
+						bull.get(i).foolChase(sm, foo, bull.get(i).getRow(), bull.get(i).getCol());
+					}
+					createGrid();
+					count++;
+				} while (count < menu.getTurnsToMove());
 			}
+			checkIfGameOver();
+			if (foo.getWinstonGameOver() == true) {
+				JOptionPane.showMessageDialog(null, "Game Over! Winston caught McCree!");
+			}
+
 			createGrid();
+
+			if (foo.getMcCreeGameOver() == true) {
+				hb.getChildren().addAll(mccree);
+
+			} else if (foo.getWinstonGameOver() == true) {
+				hb.getChildren().addAll(winston);
+			}
 		});
+
 	}
 
-	public void addBull() {
-		if (fu.getTurns() % 3 == 0)
-			sm.coords[1][1].setValue('B');
+	public void createBull() {
+		for (int i = menu.getTurnsToComeOut(); i < menu.getHowManyWins(); i++)
+			if (foo.getTurns() == i) {
+				sm.coords[1][1].setValue('B');
+				bull.add(new Bull(1, 1));
+				bullOut = true;
+			}
+	}
+
+	public void checkIfGameOver() {
+
+		if (sm.coords[foo.getCol()][foo.getRow()].getValue() != 'P') {
+			foo.setWinstonGameOver(true);
+		}
+
 	}
 
 	public static void main(String[] args) {
