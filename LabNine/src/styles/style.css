@@ -7,11 +7,10 @@
 	-fx-border-color: #000000;
 }
 .walls{
-	/*-fx-background-color: #ADD8E6;*/
-	-fx-pref-height: 40px;
-	-fx-pref-width: 40px; 
-	-fx-border-color: #ffffff;
-	-fx-background-image: url("Untitled.png"); 
+	-fx-background-color: #D3D3D3;
+	-fx-pref-height: 40;
+	-fx-pref-width: 40; 
+	-fx-border-color: #000000;
 	}
 .path{
 	-fx-pref-height: 40;
@@ -19,22 +18,36 @@
 	-fx-background-color: #000000;
 }
 .title{
-	-fx-background-color: #ADD8E6;
+	-fx-background-color: #A9A9A9;
 	-fx-alignment: center;
 	-fx-font-size: 250%;
 	-fx-max-width: 1000;
 }
 .button{
-	-fx-background-color: #ADD8E6;
+	-fx-background-color: #A9A9A9;
 	-fx-border-color: #000000;
 }
 .vbox{
-	-fx-background-color: #ADD8E6;
+	-fx-background-color: #A9A9A9;
 	-fx-alignment: center;
 }
 .player{
-	
+	-fx-background-image: url("mcree.png"); 
+	-fx-pref-height: 40;
+	-fx-pref-width: 40; 
 }
 .bulls{
-	
+	-fx-background-image: url("winston.png"); 
+	-fx-pref-height: 40;
+	-fx-pref-width: 40; 
+}
+.hbox{
+	-fx-alignment: center;
+}
+.winLoseLabel{
+	-fx-background-color: #FF0000;
+	-fx-text-fill: #000000;
+	-fx-pref-height: 30;
+	-fx-pref-width: 60;
+	-fx-alignment: center;
 }
